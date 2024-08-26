@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Editar Produto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Editar Produto</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Editar Produto</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="produtoForm" (ngSubmit)="salvarProduto()">
+        <ion-item>
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input formControlName="nome"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Descrição</ion-label>
+          <ion-input formControlName="descricao"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Quantidade</ion-label>
+          <ion-input type="number" formControlName="quantidade"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Preço</ion-label>
+          <ion-input type="number" formControlName="preco"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Categoria</ion-label>
+          <ion-select formControlName="categoria" interface="action-sheet">
+            <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">
+              {{ categoria.nome }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button expand="block" type="submit" [disabled]="!produtoForm.valid">Salvar Produto</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltarParaHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Produtos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirFormulario()">Add Produto</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let produto of produtos">
+      <ion-icon [name]="produto.icone" slot="start"></ion-icon>
+      <ion-label>
+        <h2>{{ produto.nome }}</h2>
+        <p>{{ produto.descricao }}</p>
+        <p>Quantidade: {{ produto.quantidade }}</p>
+        <p>Preço: {{ produto.preco | currency }}</p>
+      </ion-label>
+      <ion-button fill="clear" (click)="editarProduto(produto)">Editar</ion-button>
+      <ion-button fill="clear" color="danger" (click)="excluirProduto(produto.id)">Excluir</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

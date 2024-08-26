@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltarParaHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-select placeholder="Escolha um Estabelecimento" [(ngModel)]="estabelecimentoSelecionado">
+    <ion-select-option *ngFor="let est of estabelecimentos" [value]="est">{{ est.nome }}</ion-select-option>
+  </ion-select>
+
+  <ion-button expand="full" (click)="adicionarCategoria()">Adicionar Categoria</ion-button>
+  <ion-button expand="full" (click)="adicionarProduto()">Adicionar Produto</ion-button>
+</ion-content>

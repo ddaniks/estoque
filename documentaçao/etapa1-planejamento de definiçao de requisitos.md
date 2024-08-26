@@ -2,6 +2,8 @@
 
 ### 1. **Planejamento e Definição de Requisitos**
 
+**https://www.youtube.com/watch?v=U5F5ZTMq13o**
+
 #### **1.1 Definir Escopo**
 - **Objetivo do Projeto:** Desenvolver um aplicativo de controle de estoque que permita gerenciar categorias e produtos, com suporte para múltiplos estabelecimentos.
 - **Funcionalidades Principais:**
