@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {produto} from '../produtos/produtos.module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstoqueService {
-  private apiUrl = 'https://api.example.com'; // Substitua pela URL da sua API
+  private apiUrl = 'http://localhost:8000/api'; // Substitua pela URL da sua API
 
   constructor(private http: HttpClient) { }
 
@@ -16,8 +17,8 @@ export class EstoqueService {
   }
 
   // Método para obter produtos
-  getProdutos(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/produtos`);
+  getProdutos(): Observable<produto[]> {
+    return this.http.get<produto[]>(`${this.apiUrl}/produtos`);
   }
 
   // Método para adicionar uma nova categoria

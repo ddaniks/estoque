@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EstoqueService } from '../services/estoque.service'; // Ajuste o caminho se necessário
+import { LoadingController, ModalController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { produto } from './produtos.module';
+import { DetalhesComponent } from '../detalhes/detalhes.component';
+
 
 @Component({
   selector: 'app-produtos',
@@ -13,10 +18,16 @@ export class ProdutosPage implements OnInit {
   categorias: any[] = [];
   produtos: any[] = []; // Lista de produtos
 
+ 
+  produtos$: Observable<produto[]> = new Observable<produto[]>();
+
+
   constructor(
     private fb: FormBuilder,
     private estoqueService: EstoqueService,
-    private router: Router
+    private router: Router,
+    private loadingCtrl:LoadingController,
+    private modalCtrl:ModalController
   ) {
     this.produtoForm = this.fb.group({
       nome: ['', Validators.required],
@@ -75,6 +86,14 @@ export class ProdutosPage implements OnInit {
       console.log('Produto excluído com sucesso');
       this.carregarProdutos(); // Recarrega a lista de produtos após a exclusão
     });
+  }
+
+  async openDetalhesModal(produto:produto){
+    const modal = await this.modalCtrl.create({
+      component:DetalhesComponent,
+      componentProps:{produto},
+    });
+    modal.present();
   }
   
 }

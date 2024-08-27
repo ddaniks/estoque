@@ -18,3 +18,11 @@ import { ProdutosPage } from './produtos.page';
   declarations: [ProdutosPage]
 })
 export class ProdutosPageModule {}
+
+export interface produto{
+  name:string;
+  preco:number;
+  imageurl:string;
+  categoria:string;
+  descricao:string;
+}

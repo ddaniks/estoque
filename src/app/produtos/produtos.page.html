@@ -12,19 +12,34 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let produto of produtos">
-      <ion-icon [name]="produto.icone" slot="start"></ion-icon>
-      <ion-label>
-        <h2>{{ produto.nome }}</h2>
-        <p>{{ produto.descricao }}</p>
-        <p>Quantidade: {{ produto.quantidade }}</p>
-        <p>Preço: {{ produto.preco | currency }}</p>
-      </ion-label>
-      <ion-button fill="clear" (click)="editarProduto(produto)">Editar</ion-button>
-      <ion-button fill="clear" color="danger" (click)="excluirProduto(produto.id)">Excluir</ion-button>
-    </ion-item>
+    <ion-card *ngFor="let produto of produtos" (click)="openDetalhesModal(produto)">
+      <ion-card-content>
+        <ion-grid fixed>
+          <ion-row>
+            <!-- Coluna da Imagem -->
+            <ion-col size="3">
+              <ion-thumbnail>
+                <img [src]="produto.imageurl" alt="{{ produto.nome }}" />
+              </ion-thumbnail>
+            </ion-col>
+
+            <!-- Coluna do Nome e Preço -->
+            <ion-col size="4">
+              <ion-card-title>{{ produto.name }}</ion-card-title>
+              <p>Quantidade: {{ produto.quantidade }}</p>
+              <ion-card-subtitle>{{ produto.preco | currency:'BRL' }}</ion-card-subtitle>
+            </ion-col>
+
+            <!-- Coluna dos Botões -->
+            <ion-col size="4" class="ion-text-end">
+              <ion-button fill="clear" (click)="editarProduto(produto)">EDT</ion-button>
+              <ion-button fill="clear" color="danger" (click)="excluirProduto(produto.id)">Del</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
 </ion-content>

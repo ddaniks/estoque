@@ -56,7 +56,7 @@
     <ion-item *ngFor="let categoria of categorias">
       <ion-icon [name]="categoria.icone" slot="start"></ion-icon>
       <ion-label>
-        <h2>{{ categoria.nome }}</h2>
+        <p>{{ categoria.name }}</p>
         <p>{{ categoria.descricao }}</p>
       </ion-label>
       <ion-buttons slot="end">
