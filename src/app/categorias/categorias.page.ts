@@ -14,7 +14,7 @@ export class CategoriasPage implements OnInit {
 
   constructor(private fb: FormBuilder, private estoqueService: EstoqueService,private router: Router) {
     this.categoriaForm = this.fb.group({
-      nome: ['', Validators.required],
+      name: ['', Validators.required],
       descricao: ['', Validators.required],
       icone: ['', Validators.required],
     });

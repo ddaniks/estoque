@@ -30,12 +30,12 @@ export class ProdutosPage implements OnInit {
     private modalCtrl:ModalController
   ) {
     this.produtoForm = this.fb.group({
-      nome: ['', Validators.required],
+      name: ['', Validators.required],
       descricao: ['', Validators.required],
       quantidade: [0, [Validators.required, Validators.min(0)]],
       preco: [0, [Validators.required, Validators.min(0)]],
       categoria: ['', Validators.required],
-      imagem: [''] // Opcional
+      imageurl: [''] // Opcional
     });
   }
 

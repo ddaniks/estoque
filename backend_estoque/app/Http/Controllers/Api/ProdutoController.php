@@ -27,6 +27,16 @@ class ProdutoController extends Controller
         $produto = Produto::create($request->all());
 
         return response()->json($produto, 201);
+
+        $produto = Produto::created([
+            'nome' => '$request->name',
+            'descricao' => '$request->descricao',
+            'preco' => '$request->preco',
+            'categoria_id' => '$request->categoria_id',
+        ]);
+
+        //retorna resposta 
+        return response()->json($produto);
     }
 
     // Exibir um produto específico

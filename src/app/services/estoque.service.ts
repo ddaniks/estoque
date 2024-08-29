@@ -27,8 +27,8 @@ export class EstoqueService {
   }
 
   // Método para adicionar um novo produto
-  adicionarProduto(produto: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/produtos`, produto);
+  adicionarProduto(produto: any): Observable<produto> {
+    return this.http.post<produto>(`${this.apiUrl}/produtos`, produto);
   }
 
   // Método para obter movimentações (adicionar esse método se necessário)

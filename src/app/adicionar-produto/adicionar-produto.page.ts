@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EstoqueService } from '../services/estoque.service';
+import { LoadingController } from '@ionic/angular';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-adicionar-produto',
@@ -9,22 +11,26 @@ import { EstoqueService } from '../services/estoque.service';
 })
 export class AdicionarProdutoPage implements OnInit {
   produtoForm: FormGroup;
-  categorias: any[] = []; // Adicione aqui o tipo correto, se necessário
+  categorias: any[] = []; 
 
-  constructor(private fb: FormBuilder, private estoqueService: EstoqueService) {
+  constructor(
+    private fb: FormBuilder,
+    private estoqueService: EstoqueService,
+    private loadingCtrl: LoadingController){
     this.produtoForm = this.fb.group({
-      nome: ['', Validators.required],
+      name: ['', Validators.required],
       descricao: ['', Validators.required],
       quantidade: ['', Validators.required],
       preco: ['', Validators.required],
-      categoria: ['', Validators.required],
-      imagem: ['']
+      categoria_id: ['', Validators.required],
+      imageurl: ['']
     });
   }
 
   ngOnInit() {
     this.carregarCategorias();
-  }
+   
+  };
 
   carregarCategorias() {
     // Função para carregar categorias
@@ -32,6 +38,50 @@ export class AdicionarProdutoPage implements OnInit {
       this.categorias = data;
     });
   }
+
+  
+  async submitProduto() {
+    if (this.produtoForm.valid) {
+      const loading = await this.loadingCtrl.create({ message: 'Loading...' });
+      await loading.present();
+
+      console.log('Dados do produto:', this.produtoForm.value);
+
+      this.estoqueService.adicionarProduto(this.produtoForm.value)
+        .pipe(take(1))
+        .subscribe({
+          next: (produto) => {
+            console.log('Produto adicionado:', produto);
+            this.produtoForm.reset();
+            loading.dismiss();
+            // Navegar de volta ou mostrar uma mensagem de sucesso
+          },
+          error: (err) => {
+            console.error('Erro ao adicionar produto:', err);
+            loading.dismiss();
+            // Mostrar uma mensagem de erro
+          }
+        });
+    }
+  }
+
+  
+
+ /* async submitProduto(){
+    const loading = await this.loadingCtrl.create({message: 'loading...'});
+    loading.present();
+
+
+    this.estoqueService
+    .adicionarProduto(this.produtoForm.value)
+    .pipe(take(1))
+    .subscribe((produto)=>{
+      console.log(produto);
+      loading.dismiss();
+    });
+  }
+
+
 
   adicionarProduto() {
     if (this.produtoForm.valid) {
@@ -42,5 +92,9 @@ export class AdicionarProdutoPage implements OnInit {
         // Navegar de volta ou mostrar uma mensagem de sucesso
       });
     }
-  }
+  } */
+
+
+
+
 }

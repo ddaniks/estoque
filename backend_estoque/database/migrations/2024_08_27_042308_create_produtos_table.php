@@ -16,10 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->float('preco');
             $table->integer('quantidade');
-            $table->string('imageurl');
-            $table->string('categoria');
+            $table->string('imageurl')->nullable();
+            $table->unsignedBigInteger('categoria_id'); // categoria id
             $table->string('descricao')->nullable();//pode ser nulo
             $table->timestamps();
+
+            // Adicionar foreign key constraint para 'categoria'
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+
         });
     }
 
