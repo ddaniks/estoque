@@ -34,7 +34,7 @@ export class ProdutosPage implements OnInit {
       descricao: ['', Validators.required],
       quantidade: [0, [Validators.required, Validators.min(0)]],
       preco: [0, [Validators.required, Validators.min(0)]],
-      categoria: ['', Validators.required],
+      categoria_id: ['', Validators.required],
       imageurl: [''] // Opcional
     });
   }

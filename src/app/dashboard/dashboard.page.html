@@ -10,11 +10,13 @@
 </ion-header>
 
 
-<ion-content>
-  <ion-select placeholder="Escolha um Estabelecimento" [(ngModel)]="estabelecimentoSelecionado">
-    <ion-select-option *ngFor="let est of estabelecimentos" [value]="est">{{ est.nome }}</ion-select-option>
-  </ion-select>
+<ion-select placeholder="Escolha um Estabelecimento" [(ngModel)]="estabelecimentoSelecionado">
+  <ion-select-option *ngFor="let est of estabelecimentos" [value]="est">{{ est.name }}</ion-select-option>
+</ion-select>
 
-  <ion-button expand="full" (click)="adicionarCategoria()">Adicionar Categoria</ion-button>
-  <ion-button expand="full" (click)="adicionarProduto()">Adicionar Produto</ion-button>
+<ion-content>
+  
+
+  <ion-button expand="full" (click)="adicionarCategoria()">Categoria</ion-button>
+  <ion-button expand="full" (click)="adicionarProduto()"> Produto</ion-button>
 </ion-content>

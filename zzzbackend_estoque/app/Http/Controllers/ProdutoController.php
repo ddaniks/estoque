@@ -83,8 +83,18 @@ class ProdutoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+
+            /* verçao 1 >>>>>> 
             'name' => 'required|string|max:255',
             'descricao' => 'nullable|string',
+            'preco' => 'required|numeric',
+            'categoria_id' => 'required|exists:categorias,id',
+            */
+
+            'name' => 'required|string|max:255',
+            'quantidade' => 'required|numeric',
+            'descricao' => 'nullable|string',
+            'imageurl' => 'nullable|string',
             'preco' => 'required|numeric',
             'categoria_id' => 'required|exists:categorias,id',
         ]);

@@ -2,3 +2,21 @@ ion-item{
     --padding-start:0px;
     margin-bottom: 20px;
 }
+ion-item {
+  position: relative;
+}
+
+ion-label.floating {
+  position: absolute;
+  top: 20px; 
+  left: 0;
+  color: #000; 
+  transition: 0.3s ease;
+}
+
+ion-input.has-focus + ion-label.floating,
+ion-input:not(:placeholder-shown) + ion-label.floating {
+  top: -20px; 
+  font-size: 0.75rem; 
+  color: #3880ff; 
+}

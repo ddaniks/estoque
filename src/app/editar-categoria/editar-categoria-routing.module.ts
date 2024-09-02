@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { EditarCategoriaPage } from './editar-categoria.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: EditarCategoriaPage
   }
 ];

@@ -48,7 +48,8 @@ export class CategoriasPage implements OnInit {
   editarCategoria(categoria: any) {
     // Lógica para editar a categoria
     console.log('Editar categoria:', categoria);
-    // Aqui você pode abrir um modal ou redirecionar para uma página de edição
+    // Aqui esta redirecionando para uma página de edição
+    this.router.navigate(['/editar-categoria',categoria.id]);
   }
   
   excluirCategoria(id: number) {

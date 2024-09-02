@@ -3,6 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {produto} from '../produtos/produtos.module';
 
+import { BehaviorSubject } from 'rxjs';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -74,6 +78,7 @@ getCategoria(id: number): Observable<any> {
   atualizarProduto(id: number, produto: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/produtos/${id}`, produto);
   }
+
 
 
 }

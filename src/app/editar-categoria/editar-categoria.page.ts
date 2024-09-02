@@ -19,7 +19,7 @@ export class EditarCategoriaPage implements OnInit {
     private router: Router
   ) {
     this.categoriaForm = this.fb.group({
-      nome: ['', Validators.required],
+      name: ['', Validators.required],
       descricao: ['', Validators.required],
       icone: [''] // Opcional
     });
@@ -30,7 +30,15 @@ export class EditarCategoriaPage implements OnInit {
     this.categoriaId = Number(this.route.snapshot.paramMap.get('id'));
 
     // Verifica se categoriaId é válido antes de carregar
+    /*
     if (this.categoriaId) {
+      this.carregarCategoria();
+    } else {
+      console.error('Categoria ID inválido');
+    }
+      */
+
+    if (!isNaN(this.categoriaId) && this.categoriaId > 0) {
       this.carregarCategoria();
     } else {
       console.error('Categoria ID inválido');
@@ -43,18 +51,35 @@ export class EditarCategoriaPage implements OnInit {
         // Verifica se a resposta não é nula antes de usar
         if (data) {
           this.categoriaForm.setValue({
-            nome: data.nome || '', // Valor padrão se não existir
+           // id:data.id || '',
+            name: data.name || '', // Valor padrão se não existir
             descricao: data.descricao || '',
             icone: data.icone || '' // Valor padrão se não existir
           });
         } else {
           console.error('Dados da categoria não encontrados');
         }
+      }, error => {
+        console.error('Erro ao carregar a categoria:', error);
       });
     }
   }
 
   salvarCategoria() {
+    if (this.categoriaForm.valid && this.categoriaId) {
+      this.estoqueService.atualizarCategoria(this.categoriaId, this.categoriaForm.value).subscribe(() => {
+        // navega para pagina categoria e atualiza os dados.
+        this.router.navigate(['/categorias']).then(() => window.location.reload());
+      }, error => {
+        console.error('Erro ao salvar a categoria:', error);
+      });
+    } else {
+      console.error('Formulário inválido ou Categoria ID não definido');
+    }
+  }
+
+
+  salvarCategoria2() {
     if (this.categoriaForm.valid && this.categoriaId) {
       this.estoqueService.atualizarCategoria(this.categoriaId, this.categoriaForm.value).subscribe(() => {
         this.router.navigate(['/categorias']); // Navega de volta para a lista de categorias

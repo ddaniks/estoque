@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="voltarParaCategorias()">
-        <ion-icon name="arrow-back"></ion-icon>
+        <ion-icon name="arrow-back">Categoria</ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>Editar Categoria</ion-title>
@@ -17,8 +17,8 @@
     <ion-card-content>
       <form [formGroup]="categoriaForm" (ngSubmit)="salvarCategoria()">
         <ion-item>
-          <ion-label position="floating">Nome da Categoria</ion-label>
-          <ion-input formControlName="nome"></ion-input>
+          <ion-label position="floating">Nome </ion-label>
+          <ion-input formControlName="name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Descrição</ion-label>
@@ -30,7 +30,18 @@
             <ion-select-option value="🍎">Maçã</ion-select-option>
             <ion-select-option value="🍕">Pizza</ion-select-option>
             <ion-select-option value="🍔">Hambúrguer</ion-select-option>
-            <!-- Adicione mais opções conforme necessário -->
+            <ion-select-option value="🍌">Banana</ion-select-option>
+            <ion-select-option value="🍇">Uva</ion-select-option>
+            <ion-select-option value="🍓">Morango</ion-select-option>
+            <ion-select-option value="🥦">Brócolis</ion-select-option>
+            <ion-select-option value="🌽">Milho</ion-select-option>
+            <ion-select-option value="🍚">Arroz</ion-select-option>
+            <ion-select-option value="🍳">Ovo</ion-select-option>
+            <ion-select-option value="🥩">Carne</ion-select-option>
+            <ion-select-option value="🧃">Suco</ion-select-option>
+            <ion-select-option value="🥤">Refrigerante</ion-select-option>
+            <ion-select-option value="💧">Água</ion-select-option>
+            <!-- Adicione mais opções de ícones conforme necessário -->
           </ion-select>
         </ion-item>
         <ion-button expand="block" type="submit" [disabled]="!categoriaForm.valid">Salvar Alterações</ion-button>
