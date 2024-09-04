@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalhes da Categoria</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fecharModal()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let produto of produtos">
+      <ion-icon [name]="produto.icone" slot="start"></ion-icon>
+      <ion-label>
+        <h2>{{ produto.name }}</h2>
+        <p>{{ produto.descricao }}</p>
+        <p>Quantidade: {{ produto.quantidade }}</p>
+        <p>Preço: {{ produto.preco | currency }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

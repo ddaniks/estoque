@@ -53,16 +53,17 @@
 
   <!-- Lista de categorias cadastradas -->
   <ion-list>
-    <ion-item *ngFor="let categoria of categorias">
+    <ion-item *ngFor="let categoria of categorias" (click)="openDetalhesModal(categoria)">
       <ion-icon [name]="categoria.icone" slot="start"></ion-icon>
       <ion-label>
         <p>{{ categoria.name }}</p>
         <p>{{ categoria.descricao }}</p>
       </ion-label>
       <ion-buttons slot="end">
-        <ion-button fill="clear" (click)="editarCategoria(categoria)">Editar</ion-button>
-        <ion-button fill="clear" color="danger" (click)="excluirCategoria(categoria.id)">Excluir</ion-button>
+        <ion-button fill="clear" (click)="editarCategoria(categoria); $event.stopPropagation()">Editar</ion-button>
+        <ion-button fill="clear" color="danger" (click)="excluirCategoria(categoria.id); $event.stopPropagation()">Excluir</ion-button>
       </ion-buttons>
     </ion-item>
   </ion-list>
+  
 </ion-content>

@@ -1,5 +1,9 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar><ion-buttons slot="start">
+    <ion-button (click)="voltarParaProdutos()">
+      <ion-icon name="arrow-back">Produtos</ion-icon>
+    </ion-button>
+  </ion-buttons>
     <ion-title>Editar Produto</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -19,7 +23,7 @@
       <form [formGroup]="produtoForm" (ngSubmit)="salvarProduto()">
         <ion-item>
           <ion-label position="floating">Nome</ion-label>
-          <ion-input formControlName="nome"></ion-input>
+          <ion-input formControlName="name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Descrição</ion-label>
@@ -35,9 +39,9 @@
         </ion-item>
         <ion-item>
           <ion-label position="floating">Categoria</ion-label>
-          <ion-select formControlName="categoria" interface="action-sheet">
+          <ion-select formControlName="categoria_id" interface="action-sheet">
             <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">
-              {{ categoria.nome }}
+              {{ categoria.name }}
             </ion-select-option>
           </ion-select>
         </ion-item>

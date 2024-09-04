@@ -20,9 +20,13 @@ import { ProdutosPage } from './produtos.page';
 export class ProdutosPageModule {}
 
 export interface produto{
+  id: number;
   name:string;
   preco:number;
   imageurl:string;
   categoria:string;
   descricao:string;
+  quantidade: number;
+  icone: string;
+  categoria_id: number;
 }

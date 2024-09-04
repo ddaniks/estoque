@@ -22,3 +22,5 @@ use App\Http\Controllers\ProdutoController;
 
 Route::apiResource('categorias', CategoriaController::class);
 Route::apiResource('produtos', ProdutoController::class);
+Route::get('categorias/{categoria}/produtos', [ProdutoController::class, 'getProdutosPorCategoria']);
+

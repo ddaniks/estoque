@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {produto} from '../produtos/produtos.module';
 
+
 import { BehaviorSubject } from 'rxjs';
 
 
@@ -60,7 +61,7 @@ export class EstoqueService {
     return this.http.delete<void>(`${this.apiUrl}/movimentacoes/${id}`);
   }
   // Método para obter uma categoria pelo ID
-getCategoria(id: number): Observable<any> {
+  getCategoria(id: number): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/categorias/${id}`);
 }
 
@@ -78,6 +79,12 @@ getCategoria(id: number): Observable<any> {
   atualizarProduto(id: number, produto: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/produtos/${id}`, produto);
   }
+
+  //metodo pegar produtos por categoria 
+  getProdutosPorCategoria(categoriaId: number): Observable<produto[]> {
+    return this.http.get<produto[]>(`${this.apiUrl}/categorias/${categoriaId}/produtos`);
+  }
+  
 
 
 

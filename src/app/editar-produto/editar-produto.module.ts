@@ -15,8 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     IonicModule,
     EditarProdutoPageRoutingModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule    
   ],
   declarations: [EditarProdutoPage]
 })

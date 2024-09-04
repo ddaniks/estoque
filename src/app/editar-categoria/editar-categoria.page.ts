@@ -28,16 +28,6 @@ export class EditarCategoriaPage implements OnInit {
   ngOnInit() {
     // Obtém o ID da categoria da rota e garante que seja um número
     this.categoriaId = Number(this.route.snapshot.paramMap.get('id'));
-
-    // Verifica se categoriaId é válido antes de carregar
-    /*
-    if (this.categoriaId) {
-      this.carregarCategoria();
-    } else {
-      console.error('Categoria ID inválido');
-    }
-      */
-
     if (!isNaN(this.categoriaId) && this.categoriaId > 0) {
       this.carregarCategoria();
     } else {
@@ -78,16 +68,6 @@ export class EditarCategoriaPage implements OnInit {
     }
   }
 
-
-  salvarCategoria2() {
-    if (this.categoriaForm.valid && this.categoriaId) {
-      this.estoqueService.atualizarCategoria(this.categoriaId, this.categoriaForm.value).subscribe(() => {
-        this.router.navigate(['/categorias']); // Navega de volta para a lista de categorias
-      });
-    } else {
-      console.error('Formulário inválido ou Categoria ID não definido');
-    }
-  }
 
   voltarParaCategorias() {
     this.router.navigate(['/categorias']); // Navega de volta para a lista de categorias

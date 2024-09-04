@@ -20,20 +20,23 @@ export class EditarProdutoPage implements OnInit {
     private router: Router
   ) {
     this.produtoForm = this.fb.group({
-      nome: ['', Validators.required],
+      name: ['', Validators.required],
       descricao: ['', Validators.required],
       quantidade: [0, [Validators.required, Validators.min(0)]],
       preco: [0, [Validators.required, Validators.min(0)]],
-      categoria: ['', Validators.required]
+      categoria_id: ['', Validators.required]
     });
   }
 
   ngOnInit() {
-    this.produtoId = Number(this.route.snapshot.paramMap.get('id'));
-    if (this.produtoId) {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.produtoId = id ? Number(id) : null;
+
+    if (this.produtoId && !isNaN(this.produtoId)) {
       this.carregarProduto();
     } else {
       console.error('Produto ID inválido');
+      this.router.navigate(['/produtos']);
     }
     this.carregarCategorias();
   }
@@ -43,15 +46,19 @@ export class EditarProdutoPage implements OnInit {
       this.estoqueService.getProduto(this.produtoId).subscribe(data => {
         if (data) {
           this.produtoForm.setValue({
-            nome: data.nome || '',
+            name: data.name || '',
             descricao: data.descricao || '',
-            quantidade: data.quantidade || 0,
-            preco: data.preco || 0,
-            categoria: data.categoria || ''
+            quantidade: data.quantidade !== undefined ? data.quantidade : 0,
+            preco: data.preco !== undefined ? data.preco : 0,
+            categoria_id: data.categoria_id || this.categorias[0]?.id || ''
           });
         } else {
           console.error('Dados do produto não encontrados');
+          this.router.navigate(['/produtos']);
         }
+      }, error => {
+        console.error('Erro ao carregar o produto:', error);
+        this.router.navigate(['/produtos']);
       });
     }
   }
@@ -63,12 +70,20 @@ export class EditarProdutoPage implements OnInit {
   }
 
   salvarProduto() {
-    if (this.produtoForm.valid && this.produtoId) {
+    if (this.produtoForm.valid && this.produtoId !== null) {
       this.estoqueService.atualizarProduto(this.produtoId, this.produtoForm.value).subscribe(() => {
-        this.router.navigate(['/produtos']); // Navega de volta para a lista de produtos
+        this.router.navigate(['/produtos']).then(() => window.location.reload());
+      }, error => {
+        console.error('Erro ao salvar o produto:', error);
       });
     } else {
-      console.error('Formulário inválido ou Produto ID não definido');
+      console.error('Produto ID inválido');
+      this.router.navigate(['/produtos']);
     }
   }
+
+  voltarParaProdutos() {
+    this.router.navigate(['/produtos']); // Navega de volta para a lista de categorias
+  }
+
 }

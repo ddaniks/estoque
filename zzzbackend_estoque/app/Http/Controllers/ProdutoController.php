@@ -25,7 +25,7 @@ class ProdutoController extends Controller
             'categoria_id' => 'required|exists:categorias,id',
         ]);
 
-        // salvando no BD
+        // salvando no BD   
             $produto = Produto::created([
             'name' => '$request->name',
             'quantidade' => '$request->quantidade',
@@ -121,4 +121,13 @@ class ProdutoController extends Controller
 
         return response()->json(['message' => 'Produto não encontrado'], 404);
     }
+
+
+    public function getProdutosPorCategoria($categoriaId)
+{
+    $produtos = Produto::where('categoria_id', $categoriaId)->get();
+    return response()->json($produtos);
+}
+
+
 }
