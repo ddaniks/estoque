@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'editar-produto',
     loadChildren: () => import('./editar-produto/editar-produto.module').then( m => m.EditarProdutoPageModule)
   },
+  {
+    path: 'adicionar-categoria',
+    loadChildren: () => import('./adicionar-categoria/adicionar-categoria.module').then( m => m.AdicionarCategoriaPageModule)
+  },
 ];
 
 @NgModule({

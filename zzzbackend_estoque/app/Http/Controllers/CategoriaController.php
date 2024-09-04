@@ -20,6 +20,7 @@ class CategoriaController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'descricao' => 'nullable|string',
+            'icone' => 'nullable|string'
         ]);
 
         $categoria = Categoria::create($request->all());
@@ -45,6 +46,7 @@ class CategoriaController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'descricao' => 'nullable|string',
+            'icone' => 'nullable|string'
         ]);
 
         $categoria = Categoria::find($id);

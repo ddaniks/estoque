@@ -4,6 +4,7 @@ import { EstoqueService } from '../services/estoque.service';
 import { produto } from '../produtos/produtos.module';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';  
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detalhes-categoria',
@@ -16,7 +17,9 @@ export class DetalhesCategoriaComponent implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private estoqueService: EstoqueService
+    private estoqueService: EstoqueService,
+    private router: Router,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -38,6 +41,14 @@ export class DetalhesCategoriaComponent implements OnInit {
   fecharModal() {
     this.modalCtrl.dismiss();
   }
+
+  editarProduto(produto: any) {
+    this.modalController.dismiss().then(() => {
+      this.router.navigate(['/editar-produto', produto.id]);
+    });
+  }
+  
+
 }
 @NgModule({
   declarations: [DetalhesCategoriaComponent],

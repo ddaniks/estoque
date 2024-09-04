@@ -65,36 +65,5 @@ export class AdicionarProdutoPage implements OnInit {
     }
   }
 
-  
-
- /* async submitProduto(){
-    const loading = await this.loadingCtrl.create({message: 'loading...'});
-    loading.present();
-
-
-    this.estoqueService
-    .adicionarProduto(this.produtoForm.value)
-    .pipe(take(1))
-    .subscribe((produto)=>{
-      console.log(produto);
-      loading.dismiss();
-    });
-  }
-
-
-
-  adicionarProduto() {
-    if (this.produtoForm.valid) {
-      const novoProduto = this.produtoForm.value;
-      this.estoqueService.adicionarProduto(novoProduto).subscribe(response => {
-        console.log('Produto adicionado:', response);
-        this.produtoForm.reset();
-        // Navegar de volta ou mostrar uma mensagem de sucesso
-      });
-    }
-  } */
-
-
-
 
 }

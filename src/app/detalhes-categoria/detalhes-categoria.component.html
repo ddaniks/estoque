@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Detalhes da Categoria</ion-title>
+    <ion-title>Produtos</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="fecharModal()">Fechar</ion-button>
     </ion-buttons>
@@ -17,6 +17,7 @@
         <p>Quantidade: {{ produto.quantidade }}</p>
         <p>Preço: {{ produto.preco | currency }}</p>
       </ion-label>
+      <ion-button fill="clear" (click)="editarProduto(produto); $event.stopPropagation()">EDT</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

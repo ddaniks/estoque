@@ -5,7 +5,7 @@ import { EstoqueService } from '../services/estoque.service'; // Ajuste o caminh
 import { LoadingController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { produto } from './produtos.module';
-import { DetalhesComponent } from '../detalhes/detalhes.component';
+import { DetalhesComponent } from '../detalhes-produto/detalhes.component';
 
 
 @Component({

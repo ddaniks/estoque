@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltarParaHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>adicionar-categoria</ion-title>   
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <!-- Formulário para adicionar nova categoria -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Adicionar Nova Categoria</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="categoriaForm" (ngSubmit)="adicionarCategoria()">
+        <ion-item>
+          <ion-label position="block">Nome da Categoria</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Descrição</ion-label>
+          <ion-input formControlName="descricao"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Ícone</ion-label>
+          <ion-select formControlName="icone" interface="action-sheet" placeholder="Selecione um ícone">
+            <ion-select-option value="🍎">Maçã</ion-select-option>
+            <ion-select-option value="🍕">Pizza</ion-select-option>
+            <ion-select-option value="🍔">Hambúrguer</ion-select-option>
+            <ion-select-option value="🍌">Banana</ion-select-option>
+            <ion-select-option value="🍇">Uva</ion-select-option>
+            <ion-select-option value="🍓">Morango</ion-select-option>
+            <ion-select-option value="🥦">Brócolis</ion-select-option>
+            <ion-select-option value="🌽">Milho</ion-select-option>
+            <ion-select-option value="🍚">Arroz</ion-select-option>
+            <ion-select-option value="🍳">Ovo</ion-select-option>
+            <ion-select-option value="🥩">Carne</ion-select-option>
+            <ion-select-option value="🧃">Suco</ion-select-option>
+            <ion-select-option value="🥤">Refrigerante</ion-select-option>
+            <ion-select-option value="💧">Água</ion-select-option>
+            <!-- Adicione mais opções de ícones conforme necessário -->
+          </ion-select>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" [disabled]="!categoriaForm.valid">Adicionar Categoria</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>

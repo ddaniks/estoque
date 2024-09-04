@@ -24,7 +24,8 @@ export class EditarProdutoPage implements OnInit {
       descricao: ['', Validators.required],
       quantidade: [0, [Validators.required, Validators.min(0)]],
       preco: [0, [Validators.required, Validators.min(0)]],
-      categoria_id: ['', Validators.required]
+      categoria_id: ['', Validators.required],
+      imageurl: ['', [Validators.pattern('https?://.+')]]
     });
   }
 
@@ -43,25 +44,30 @@ export class EditarProdutoPage implements OnInit {
 
   carregarProduto() {
     if (this.produtoId) {
-      this.estoqueService.getProduto(this.produtoId).subscribe(data => {
-        if (data) {
-          this.produtoForm.setValue({
-            name: data.name || '',
-            descricao: data.descricao || '',
-            quantidade: data.quantidade !== undefined ? data.quantidade : 0,
-            preco: data.preco !== undefined ? data.preco : 0,
-            categoria_id: data.categoria_id || this.categorias[0]?.id || ''
-          });
-        } else {
-          console.error('Dados do produto não encontrados');
+      this.estoqueService.getProduto(this.produtoId).subscribe(
+        data => {
+          if (data) {
+            this.produtoForm.setValue({
+              name: data.name || '',
+              descricao: data.descricao || '',
+              quantidade: data.quantidade !== undefined ? data.quantidade : 0,
+              preco: data.preco !== undefined ? data.preco : 0,
+              categoria_id: data.categoria_id || this.categorias[0]?.id || '',
+              imageurl: data.imageurl || ''
+            });
+          } else {
+            console.error('Dados do produto não encontrados');
+            this.router.navigate(['/produtos']);
+          }
+        },
+        error => {
+          console.error('Erro ao carregar o produto:', error);
           this.router.navigate(['/produtos']);
         }
-      }, error => {
-        console.error('Erro ao carregar o produto:', error);
-        this.router.navigate(['/produtos']);
-      });
+      );
     }
   }
+  
 
   carregarCategorias() {
     this.estoqueService.getCategorias().subscribe(data => {
@@ -71,6 +77,7 @@ export class EditarProdutoPage implements OnInit {
 
   salvarProduto() {
     if (this.produtoForm.valid && this.produtoId !== null) {
+      console.log(this.produtoForm.value); // Adicione isso para verificar os dados
       this.estoqueService.atualizarProduto(this.produtoId, this.produtoForm.value).subscribe(() => {
         this.router.navigate(['/produtos']).then(() => window.location.reload());
       }, error => {
@@ -81,6 +88,7 @@ export class EditarProdutoPage implements OnInit {
       this.router.navigate(['/produtos']);
     }
   }
+  
 
   voltarParaProdutos() {
     this.router.navigate(['/produtos']); // Navega de volta para a lista de categorias

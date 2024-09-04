@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EstoqueService } from '../services/estoque.service';
 import { Router } from '@angular/router'; 
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { DetalhesCategoriaComponent } from '../detalhes-categoria/detalhes-categoria.component';
 
 @Component({
@@ -18,7 +18,9 @@ export class CategoriasPage implements OnInit {
     private fb: FormBuilder,
     private estoqueService: EstoqueService,
     private modalController: ModalController,
-    private router: Router){
+    private router: Router,
+    private alertController: AlertController
+  ) {
     this.categoriaForm = this.fb.group({
       name: ['', Validators.required],
       descricao: ['', Validators.required],
@@ -32,6 +34,10 @@ export class CategoriasPage implements OnInit {
 
   voltarParaHome() {
     this.router.navigate(['/home']); // Navega para a página Home
+  }
+
+  abrirFormulario() {
+    this.router.navigate(['/adicionar-categoria']);  // Navega para a página de adicionar produto
   }
 
   adicionarCategoria() {
@@ -64,17 +70,33 @@ export class CategoriasPage implements OnInit {
   editarCategoria(categoria: any) {
     // Lógica para editar a categoria
     console.log('Editar categoria:', categoria);
-    // Aqui esta redirecionando para uma página de edição
-    this.router.navigate(['/editar-categoria',categoria.id]);
+    this.router.navigate(['/editar-categoria', categoria.id]);
   }
-  
-  excluirCategoria(id: number) {
-    // Lógica para excluir a categoria
-    this.estoqueService.excluirCategoria(id).subscribe(() => {
-      console.log('Categoria excluída com sucesso');
-      this.carregarCategorias(); // Recarrega a lista de categorias após a exclusão
-    });
-  }
-  
 
+  async excluirCategoria(id: number) {
+    const alert = await this.alertController.create({
+      header: 'Confirmação',
+      message: 'Tem certeza que deseja excluir esta categoria? , Todos os produtos desta categoria serão deletados ',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+          handler: () => {
+            console.log('Exclusão cancelada');
+          }
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.estoqueService.excluirCategoria(id).subscribe(() => {
+              console.log('Categoria excluída com sucesso');
+              this.carregarCategorias(); // Recarrega a lista de categorias após a exclusão
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }
