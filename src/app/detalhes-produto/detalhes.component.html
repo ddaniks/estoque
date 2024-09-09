@@ -15,12 +15,13 @@
   <div class="ion-padding">
     <ion-text>
       <h1>{{produto.name}}</h1>
-      <h3>{{produto.preco}}</h3>
+      <h3> Preço: R$ {{produto.preco}}</h3>
       <p class="ion-margin-vertical">{{produto.descricao}}</p>
     </ion-text>
-    <ion-button expand="block">Edit</ion-button>
-    <ion-button expand="block" color="danger">Delete</ion-button>
+    <!-- Botão Delete com a função associada -->
+    <ion-button expand="block" color="danger" (click)="confirmarExclusao(produto)">Delete</ion-button>
   </div>
 </ion-content>
+
 
 

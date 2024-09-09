@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { EstoqueService } from '../services/estoque.service';
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-movimentacoes',
   templateUrl: './movimentacoes.page.html',
   styleUrls: ['./movimentacoes.page.scss'],
 })
+@Injectable({
+  providedIn: 'root'
+})
+
 export class MovimentacoesPage implements OnInit {
   movimentacoes: any[] = [];
 
@@ -19,6 +24,19 @@ export class MovimentacoesPage implements OnInit {
     this.estoqueService.getMovimentacoes().subscribe((data : any[]) => {
       this.movimentacoes = data;
     });
+  }
+
+  registrarMovimentacao(tipo: string, detalhes: any) {
+    const novaMovimentacao = {
+      tipo, // Tipo da movimentação: "Adicionado", "Editado", "Excluído"
+      detalhes,
+      data: new Date()
+    };
+    this.movimentacoes.push(novaMovimentacao);
+  }
+
+  getMovimentacoes() {
+    return this.movimentacoes;
   }
 
   adicionarMovimentacao() {
