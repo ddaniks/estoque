@@ -9,14 +9,59 @@
   </ion-toolbar>
 </ion-header>
 
-
-<ion-select placeholder="Escolha um Estabelecimento" [(ngModel)]="estabelecimentoSelecionado">
-  <ion-select-option *ngFor="let est of estabelecimentos" [value]="est">{{ est.name }}</ion-select-option>
-</ion-select>
-
 <ion-content>
-  
 
-  <ion-button expand="full" (click)="adicionarCategoria()">Categoria</ion-button>
-  <ion-button expand="full" (click)="adicionarProduto()"> Produto</ion-button>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="adicionarCategoria()">Categoria</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="full" (click)="adicionarProduto()">Produto</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item>
+    <ion-label>Selecionar Categoria</ion-label>
+    <ion-select [(ngModel)]="categoriaSelecionada" (ionChange)="onCategoriaChange()">
+      <ion-select-option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria.name }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card *ngIf="categoriaSelecionada">
+    <ion-card-header>
+      <ion-card-title>Categoria: {{ categoriaSelecionada.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Quantidade de Produtos: {{ produtosSelecionados.length }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Valor Total: {{ valorTotalCategoria | currency:'BRL' }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list *ngIf="produtosSelecionados.length > 0">
+    <ion-item *ngFor="let produto of produtosSelecionados">
+      <ion-label>
+        <h2>{{ produto.name }}</h2>
+        <p>Quantidade: {{ produto.quantidade }}</p>
+        <p>Valor Unitário: {{ produto.preco | currency:'BRL' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="lucroCalculado">
+    <ion-card-header>
+      <ion-card-title>Lucro</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Lucro no Mês: {{ lucroCalculado | currency:'BRL' }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

@@ -93,6 +93,16 @@ export class EstoqueService {
     return this.http.get<any[]>(`${this.apiUrl}/movimentacoes`);
   }
 
+  // Obtém as categorias para o estabelecimento selecionado
+  getCategoriass(estabelecimentoId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/categorias/${estabelecimentoId}`);
+  }
+
+  // Obtém os produtos de uma categoria
+  getProdutosPorCategoriaa(categoriaId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/produtos/${categoriaId}`);
+  }
+
 
 
 }
