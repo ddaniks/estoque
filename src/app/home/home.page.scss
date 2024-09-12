@@ -1,27 +1,48 @@
-#container {
+ion-content {
+  --background: FloralWhite; /* Define a cor de fundo da página */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* Ajusta a altura para centralizar na tela */
+  gap: 10px;
+}
+
+.custom-button {
+  height: 30vh; /* Define a altura dos botões como 30% da tela */
+  width: 40%;
+  margin: 0 10px; /* Espaçamento lateral entre os botões */
+  border-radius: 10px;
+  border: 3px solid rgb(253, 253, 5); /* Margem verde ao redor dos botões */
+  background-color: #8A2BE2; /* Cor de fundo dos botões */
+  color: white; /* Cor do texto */
+  font-size: 1.5em; /* Aumenta o tamanho do texto dos botões */
+  font-weight: bold; /* Deixa o texto mais evidente */
+  text-align: center; /* Centraliza o texto */
+  transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+  background-color: #9370DB; /* Cor de fundo ao passar o mouse */
+}
+
+.custom-card {
+  background-color: #8A2BE2; /* Cor de fundo do card */
+  border: 3px solid rgb(253, 253, 5);
+  color: white; /* Cor do texto do card */
+  border-radius: 10px; /* Arredondar as bordas do card */
+  margin: 30px; /* Margem ao redor do card */
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+button {
+  background-color: #8A2BE2; /* Cor de fundo completa */
+  color: white; /* Cor do texto */
+  font-size: 20px; /* Aumenta o tamanho da fonte */
+  border-radius: 10px; /* Arredonda os cantos */
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}

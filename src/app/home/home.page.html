@@ -21,7 +21,6 @@
       <ion-item routerLink="/categorias" routerDirection="root">Categorias</ion-item>
       <ion-item routerLink="/produtos" routerDirection="root">Produtos</ion-item>
       <ion-item routerLink="/movimentacoes" routerDirection="root">Movimentações</ion-item>
-      <ion-item routerLink="/relatorios" routerDirection="root">Relatórios</ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
@@ -37,22 +36,17 @@
       Selecione uma opção para começar.
     </ion-card-content>
   </ion-card>
+
+  <!-- Botões centralizados, lado a lado -->
+  <div class="button-container">
+    <button expand="block" class="custom-button" (click)="adicionarCategoria()">Categoria</button>
+    <button expand="block" class="custom-button" (click)="adicionarProduto()">Produto</button>
+  </div>
+
+  <!-- Botão em forma de card que leva à página de login -->
+  <ion-card class="custom-card" button routerLink="/login">
+    <ion-card-content>
+      <button expand="block">Login</button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
-
-
-
-<ion-content>
-  <ion-button expand="block" (click)="adicionarCategoria()">Categoria</ion-button>
-  <ion-button expand="block" (click)="adicionarProduto()"> Produto</ion-button>
-</ion-content>
-
-
-
-
-
-<!-- Botão em forma de card que leva à página de login -->
-<ion-card button routerLink="/login">
-  <ion-card-content>
-    <ion-button expand="block">Ir para Login</ion-button>
-  </ion-card-content>
-</ion-card>

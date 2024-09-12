@@ -12,9 +12,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="content-produto">
   <ion-list>
-    <ion-card *ngFor="let produto of produtos" (click)="openDetalhesModal(produto)">
+    <ion-card class="card-produto" *ngFor="let produto of produtos" (click)="openDetalhesModal(produto)">
       <ion-card-content>
         <ion-grid fixed>
           <ion-row>
@@ -26,7 +26,7 @@
             </ion-col>
 
             <!-- Coluna do Nome e Preço -->
-            <ion-col size="4">
+            <ion-col size="5">
               <ion-card-title>{{ produto.name }}</ion-card-title>
               <p>Quantidade: {{ produto.quantidade }}</p>
               <ion-card-subtitle>{{ produto.preco | currency:'BRL' }}</ion-card-subtitle>
@@ -35,7 +35,6 @@
             <!-- Coluna dos Botões -->
             <ion-col size="4" class="ion-text-end">
               <ion-button fill="clear" (click)="editarProduto(produto); $event.stopPropagation()">EDT</ion-button>
-              <!--<ion-button fill="clear" color="danger" (click)="excluirProduto(produto.id); $event.stopPropagation()">Del</ion-button> -->
             </ion-col>
           </ion-row>
         </ion-grid>

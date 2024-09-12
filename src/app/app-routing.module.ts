@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./movimentacoes/movimentacoes.module').then( m => m.MovimentacoesPageModule)
   },
   {
-    path: 'relatorios',
-    loadChildren: () => import('./relatorios/relatorios.module').then( m => m.RelatoriosPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
