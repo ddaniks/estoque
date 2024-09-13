@@ -1,53 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import { EstoqueService } from '../services/estoque.service';
-import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movimentacoes',
   templateUrl: './movimentacoes.page.html',
   styleUrls: ['./movimentacoes.page.scss'],
 })
-@Injectable({
-  providedIn: 'root'
-})
-
 export class MovimentacoesPage implements OnInit {
   movimentacoes: any[] = [];
+  movimentacaoAberta: any = null;
 
-  constructor(private estoqueService: EstoqueService) {}
+  constructor(
+    private estoqueService: EstoqueService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.carregarMovimentacoes();
   }
 
+  voltarParaHome() {
+    this.router.navigate(['/home']); // Navega para a página Home
+  }
+
   carregarMovimentacoes() {
-    this.estoqueService.getMovimentacoes().subscribe((data : any[]) => {
+    this.estoqueService.getMovimentacoes().subscribe(data => {
+      console.log('Dados de movimentações recebidos:', data);
       this.movimentacoes = data;
+    }, error => {
+      console.error('Erro ao buscar movimentações:', error);
+    });
+  }
+  
+
+  toggleDetalhes(movimentacao: any) {
+    if (this.movimentacaoAberta === movimentacao) {
+      this.movimentacaoAberta = null;
+    } else {
+      this.movimentacaoAberta = movimentacao;
+    }
+  }
+
+  editarProduto(produto: any) {
+    this.estoqueService.atualizarProduto(produto.id, produto).subscribe(() => {
+      this.carregarMovimentacoes();
     });
   }
 
-  registrarMovimentacao(tipo: string, detalhes: any) {
-    const novaMovimentacao = {
-      tipo, // Tipo da movimentação: "Adicionado", "Editado", "Excluído"
-      detalhes,
-      data: new Date()
-    };
-    this.movimentacoes.push(novaMovimentacao);
-  }
-
-  getMovimentacoes() {
-    return this.movimentacoes;
-  }
-
-  adicionarMovimentacao() {
-    // Lógica para adicionar uma nova movimentação
-  }
-
-  editarMovimentacao(movimentacao: any) {
-    // Lógica para editar a movimentação selecionada
-  }
-
-  excluirMovimentacao(movimentacao: any) {
-    // Lógica para excluir a movimentação selecionada
-  }
 }

@@ -11,10 +11,15 @@ class Produto extends Model
 
     protected $fillable = [
         'name',
-        'preco',
-        'quantidade',
-        'categoria_id',
         'descricao',
+        'quantidade',
+        'preco',
         'imageurl',
+        'categoria_id',
+        'modificado_no_mes',
+    ];
+
+    protected $casts = [
+        'preco' => 'decimal:2',
     ];
 }

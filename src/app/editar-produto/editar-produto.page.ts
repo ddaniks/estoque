@@ -53,7 +53,7 @@ export class EditarProdutoPage implements OnInit {
               quantidade: data.quantidade !== undefined ? data.quantidade : 0,
               preco: data.preco !== undefined ? data.preco : 0,
               categoria_id: data.categoria_id || this.categorias[0]?.id || '',
-              imageurl: data.imageurl || ''
+              imageurl: data.imageurl || '',
             });
           } else {
             console.error('Dados do produto não encontrados');

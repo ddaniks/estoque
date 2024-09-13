@@ -13,7 +13,7 @@ export class DashboardPage implements OnInit {
   categoriaSelecionada: any;
   produtosSelecionados: any[] = [];
   valorTotalCategoria: number = 0;
-  lucroCalculado: number = 0;
+  lucro: number = 0;
 
   constructor(private estoqueService: EstoqueService, private router: Router) {}
 
@@ -53,12 +53,9 @@ export class DashboardPage implements OnInit {
   }
 
   calcularLucro() {
-    const dataAtual = new Date();
-    const inicioMes = new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 1);
-    const produtosModificadosNoMes = this.produtos.filter(produto => {
-      const dataModificacao = new Date(produto.dataModificacao);
-      return dataModificacao >= inicioMes;
-    });
-    this.lucroCalculado = produtosModificadosNoMes.reduce((total, produto) => total + (produto.preco * produto.quantidade), 0);
+    // Substitua 'modificado_no_mes' pelo campo correto se necessário
+    this.lucro = this.produtosSelecionados
+      .filter(produto => produto.modificado_no_mes) // Filtra produtos modificados no mês
+      .reduce((total, produto) => total + (produto.preco * produto.quantidade), 0);
   }
 }

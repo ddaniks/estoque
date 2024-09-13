@@ -87,12 +87,6 @@ export class EstoqueService {
     return this.http.get<produto[]>(`${this.apiUrl}/categorias/${categoriaId}/produtos`);
   } 
 
-
-  // Método para obter movimentações (adicionar esse método se necessário)
-  getMovimentacoes(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/movimentacoes`);
-  }
-
   // Obtém as categorias para o estabelecimento selecionado
   getCategoriass(estabelecimentoId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/categorias/${estabelecimentoId}`);
@@ -102,6 +96,10 @@ export class EstoqueService {
   getProdutosPorCategoriaa(categoriaId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/produtos/${categoriaId}`);
   }
+  getMovimentacoes(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/movimentacoes`);
+  }
+  
 
 
 

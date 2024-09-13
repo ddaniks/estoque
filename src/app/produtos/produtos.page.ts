@@ -82,15 +82,6 @@ export class ProdutosPage implements OnInit {
     this.router.navigate(['/editar-produto', produto.id]);
   }
   
-
-  excluirProduto2(produto: any) {
-    // Lógica para excluir o produto
-    this.estoqueService.excluirProduto(produto.id).subscribe(() => {
-      console.log('Produto excluído com sucesso');
-      this.carregarProdutos(); // Recarrega a lista de produtos após a exclusão
-    });
-  }
-
   // Método para excluir o produto
   excluirProduto(produto: any) {
     this.estoqueService.excluirProduto(produto.id).subscribe(

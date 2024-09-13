@@ -10,7 +10,6 @@
 </ion-header>
 
 <ion-content>
-
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -38,30 +37,26 @@
         <ion-label>Quantidade de Produtos: {{ produtosSelecionados.length }}</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Valor Total: {{ valorTotalCategoria | currency:'BRL' }}</ion-label>
+        <ion-label>Valor Total: {{ valorTotalCategoria | currency :'BRL' }}</ion-label>
       </ion-item>
+      <!--
+      <ion-item>
+        <ion-label>Lucro: {{ lucro | currency :'BRL' }}</ion-label>
+      </ion-item>
+      -->
     </ion-card-content>
   </ion-card>
 
-  <ion-list *ngIf="produtosSelecionados.length > 0">
+  <ion-list *ngIf="categoriaSelecionada">
     <ion-item *ngFor="let produto of produtosSelecionados">
       <ion-label>
-        <h2>{{ produto.name }}</h2>
-        <p>Quantidade: {{ produto.quantidade }}</p>
-        <p>Valor Unitário: {{ produto.preco | currency:'BRL' }}</p>
+        <div>
+          <p><strong>{{ produto.name }}</strong></p>
+          <p>Quantidade: {{ produto.quantidade }}</p>
+          <p>Valor Unitário: {{ produto.preco | currency :'BRL' }}</p>
+          <p>Valor Total: {{ (produto.preco * produto.quantidade) | currency :'BRL' }}</p>
+        </div>
       </ion-label>
     </ion-item>
   </ion-list>
-
-  <ion-card *ngIf="lucroCalculado">
-    <ion-card-header>
-      <ion-card-title>Lucro</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label>Lucro no Mês: {{ lucroCalculado | currency:'BRL' }}</ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-
 </ion-content>
