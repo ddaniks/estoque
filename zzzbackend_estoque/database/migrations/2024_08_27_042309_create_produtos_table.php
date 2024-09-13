@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nome'); // Nome do produto
             $table->text('descricao')->nullable(); // Descrição pode ser nula
             $table->integer('quantidade');
-            $table->string('imageurl')->nullable();
-            $table->decimal('preco', 10, 2); // Formato para valores monetários
-            $table->foreignId('categoria_id')->constrained('categorias'); // Chave estrangeira para categorias
+            $table->text('imageurl')->nullable(); 
+            $table->decimal('preco', 10, 2); 
+            $table->foreignId('categoria_id')
+                  ->constrained('categorias')
+                  ->onDelete('cascade'); // Chave estrangeira para categorias com cascata
             $table->boolean('modificado_no_mes')->default(false); // Indica se o produto foi modificado no mês
             $table->timestamps();
         });

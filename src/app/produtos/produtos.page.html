@@ -26,14 +26,14 @@
             </ion-col>
 
             <!-- Coluna do Nome e Preço -->
-            <ion-col size="5">
+            <ion-col size="6">
               <ion-card-title>{{ produto.name }}</ion-card-title>
               <p>Quantidade: {{ produto.quantidade }}</p>
               <ion-card-subtitle>{{ produto.preco | currency:'BRL' }}</ion-card-subtitle>
             </ion-col>
 
             <!-- Coluna dos Botões -->
-            <ion-col size="4" class="ion-text-end">
+            <ion-col size="3" class="ion-text-end">
               <ion-button fill="clear" (click)="editarProduto(produto); $event.stopPropagation()">EDT</ion-button>
             </ion-col>
           </ion-row>

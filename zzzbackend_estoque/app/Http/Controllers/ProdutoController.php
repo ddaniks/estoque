@@ -16,31 +16,7 @@ class ProdutoController extends Controller
     }
 
     // Criar um novo produto
-    public function store2(Request $request)
-    {  
-        // validaçao 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'quantidade' => 'required|numeric',
-            'descricao' => 'nullable|string',
-            'imageurl' => 'nullable|string',
-            'preco' => 'required|numeric',
-            'categoria_id' => 'required|exists:categorias,id',
-        ]);
-
-        // salvando no BD   
-            $produto = Produto::created([
-            'name' => '$request->name',
-            'quantidade' => '$request->quantidade',
-            'descricao' => '$request->descricao',
-            'imageurl' => '$request->imageurl',
-            'preco' => '$request->preco',
-            'categoria_id' => '$request->categoria',
-        ]);
-
-        // retorna resposta 
-        return response()->json($produto ,201);
-    }
+   
 
     public function store(Request $request)
     {  
@@ -49,7 +25,7 @@ class ProdutoController extends Controller
             'name' => 'required|string|max:255',
             'quantidade' => 'required|numeric',
             'descricao' => 'nullable|string',
-            'imageurl' => 'nullable|string',
+            'imageurl' => 'nullable|url',
             'preco' => 'required|numeric',
             'categoria_id' => 'required|exists:categorias,id',
         ]);
