@@ -21,6 +21,7 @@
       <ion-item routerLink="/categorias" routerDirection="root">Categorias</ion-item>
       <ion-item routerLink="/produtos" routerDirection="root">Produtos</ion-item>
       <ion-item routerLink="/movimentacoes" routerDirection="root">Movimentações</ion-item>
+      <ion-item *ngIf="isLoggedIn" (click)="logout()" class="logout-item">Logout</ion-item>     
     </ion-list>
   </ion-content>
 </ion-menu>
@@ -43,8 +44,8 @@
     <button expand="block" class="custom-button" (click)="adicionarProduto()">Produto</button>
   </div>
 
-  <!-- Botão em forma de card que leva à página de login -->
-  <ion-card class="custom-card" button routerLink="/login">
+   <!-- Botão em forma de card que leva à página de login, visível apenas quando o usuário não está logado -->
+   <ion-card class="custom-card" button routerLink="/login" *ngIf="!isLoggedIn">
     <ion-card-content>
       <button expand="block">Login</button>
     </ion-card-content>

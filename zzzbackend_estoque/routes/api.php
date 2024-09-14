@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\Api\MovimentacaoController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,7 @@ Route::put('/movimentacoes/{id}', [MovimentacaoController::class, 'update']);
 Route::delete('/movimentacoes/{id}', [MovimentacaoController::class, 'destroy']);
 Route::put('/produtos/{id}', [ProdutoController::class, 'update']);
 
+
+
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
