@@ -1,10 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
 	<ion-title>{{ isLogin ? 'Login' : 'Cadastro' }}</ion-title>
+	<ion-buttons slot="start">
+		<ion-button (click)="voltarParaHome()">
+		  <ion-icon name="home"></ion-icon>
+		</ion-button>
+	  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
   <form *ngIf="isLogin" [formGroup]="loginForm" (ngSubmit)="login()">
 	<ion-item>
 	  <ion-label position="floating">Email</ion-label>
@@ -38,4 +44,5 @@
 	<ion-button expand="full" type="submit" [disabled]="!registerForm.valid">Cadastrar</ion-button>
 	<ion-button expand="full" (click)="toggleForm()">Voltar ao Login</ion-button>
   </form>
+
 </ion-content>

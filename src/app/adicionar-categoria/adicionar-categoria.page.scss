@@ -1,0 +1,71 @@
+/* Estilização do ion-card */
+ion-card {
+    --background: floralwhite; /* Fundo do card */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    margin: 20px; /* Espaçamento externo */
+    padding: 20px; /* Espaçamento interno */
+  }
+  
+  /* Estilização do ion-card-header */
+  ion-card-header {
+    text-align: center; /* Centraliza o texto no cabeçalho */
+    font-weight: bold; /* Destaca o título */
+    font-size: 1.25rem; /* Tamanho da fonte do título */
+  }
+  
+  /* Estilização do ion-card-title */
+  ion-card-title {
+    color: #333; /* Cor do texto */
+  }
+  
+  /* Estilização dos ion-item */
+  ion-item {
+    --padding-start: 0px; /* Remove espaçamento à esquerda */
+    margin-bottom: 20px; /* Espaçamento entre itens */
+    position: relative; /* Mantém posição relativa */
+  }
+  
+  /* Estilização dos rótulos flutuantes */
+  ion-label.floating {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    color: #000; 
+    transition: 0.3s ease;
+  }
+  
+  ion-input.has-focus + ion-label.floating,
+  ion-input:not(:placeholder-shown) + ion-label.floating {
+    top: -20px; 
+    font-size: 0.75rem; 
+    color: #3880ff; 
+  }
+  
+  /* Botões */
+  ion-button {
+    margin-top: 20px; /* Espaçamento superior */
+    border-radius: 5px; /* Bordas arredondadas */
+    --background: #4CAF50; /* Cor de fundo do botão */
+    --background-hover: #45A049; /* Cor ao passar o mouse */
+    --background-activated: #3E8E41; /* Cor ao clicar */
+    color: #fff; /* Cor do texto */
+  }
+  
+  /* Ícones no ion-select */
+  ion-select {
+    --padding-start: 0px;
+    --placeholder-color: #999; /* Placeholder cinza claro */
+  }
+  
+  /* Centralização do formulário */
+  form {
+    width: 90%; /* Largura do formulário */
+    max-width: 400px; /* Largura máxima */
+    margin: auto; /* Centraliza horizontalmente */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Fundo branco com opacidade */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  }
+  

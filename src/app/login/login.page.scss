@@ -1,0 +1,56 @@
+/* Fundo com a transição diagonal de amarelo para roxo */
+ion-content {
+    --background: linear-gradient(135deg, #FFD700, #9400D3);
+    background-size: cover;
+    display: flex; /* Define como um contêiner flexível */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100%; /* Garante que ocupe toda a tela */
+  }
+  
+  /* Centralize os formulários */
+  form {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    margin-left: 25%;
+    margin-top:20% ;
+    background: rgba(255, 255, 255, 0.8); /* Fundo branco com opacidade */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centraliza o conteúdo do formulário */
+  }
+  
+  /* Estilo dos campos de digitação */
+  ion-item {
+    --background: transparent;
+    margin-bottom: 15px;
+    width: 100%; /* Garante que os campos ocupem a largura total do formulário */
+  }
+  
+  ion-input {
+    --placeholder-color: #666;
+    color: #333;
+  }
+  
+  /* Estilo dos botões */
+  ion-button {
+    margin-top: 15px;
+    border-radius: 5px;
+    --background: #4CAF50; /* Verde como cor padrão */
+    --background-hover: #45A049;
+    --background-activated: #3E8E41;
+    width: 100%; /* Botões ocupam a largura total do formulário */
+  }
+  
+  ion-button:last-of-type {
+    --background: #FF5722; /* Laranja para o botão de alternar entre login e cadastro */
+    --background-hover: #E64A19;
+    --background-activated: #D84315;
+  }
+  
+  /* Adicione transições suaves */
+  ion-button, ion-input, ion-item {
+    transition: all 0.3s ease-in-out;
+  }
+  

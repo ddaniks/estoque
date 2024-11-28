@@ -32,6 +32,10 @@ export class LoginPage {
     this.isLogin = !this.isLogin;
   }
 
+  voltarParaHome() {
+    this.router.navigate(['/home']); // Navega para a página Home
+  }
+
   login() {
     if (this.loginForm.valid) {
       this.http.post(`${this.apiUrl}/login`, this.loginForm.value).subscribe((response: any) => {

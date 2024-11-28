@@ -42,7 +42,7 @@ export class EditarProdutoPage implements OnInit {
     this.carregarCategorias();
   }
 
-  carregarProduto() {
+ carregarProduto() {
     if (this.produtoId) {
       this.estoqueService.getProduto(this.produtoId).subscribe(
         data => {
